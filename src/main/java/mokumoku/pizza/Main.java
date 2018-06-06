@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 public class Main {
 
-    private static final Pattern UNSIGNED_INTEGER_PATTERN = Pattern.compile("^[0-9]*$");
+    private static final Pattern UNSIGNED_INTEGER_PATTERN = Pattern.compile("^[0-9]+$");
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -33,7 +33,7 @@ public class Main {
             System.out.print("ピザの種類はマルゲリータのみです。枚数を入力してください > ");
 
             String orderCount = scanner.nextLine();
-            if (!UNSIGNED_INTEGER_PATTERN.matcher(orderCount).matches() && !orderCount.equals("0")) {
+            if (!UNSIGNED_INTEGER_PATTERN.matcher(orderCount).matches() || orderCount.equals("0")) {
                 System.out.println("枚数は1以上の整数で指定してください！！！！");
                 continue;
             }
