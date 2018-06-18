@@ -19,4 +19,11 @@ public class Order {
     ) {
         return new Order(orderProductList, OrderStatus.申込);
     }
+
+    public Order to調理中() {
+        if (orderStatus != OrderStatus.申込) {
+            throw new RuntimeException("調理中へ遷移できません");
+        }
+        return new Order(orderProductList, OrderStatus.調理中);
+    }
 }
