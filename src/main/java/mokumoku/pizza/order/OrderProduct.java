@@ -12,4 +12,8 @@ public class OrderProduct {
     private final Pizza pizza;
 
     private final OrderCount orderCount;
+
+    public Integer getTotalPrice() {
+        return pizza.getPrice() * orderCount.getValue();
+    }
 }

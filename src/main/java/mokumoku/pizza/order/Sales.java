@@ -1,14 +1,15 @@
 package mokumoku.pizza.order;
 
-public class OrderCount {
+public class Sales {
 
     private final Integer value;
 
-    public OrderCount(Integer value) {
+    public Sales(Integer value) {
         this.value = value;
     }
 
     public Integer getValue() {
         return value;
     }
+
 }
