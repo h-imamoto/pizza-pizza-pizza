@@ -1,9 +1,12 @@
 package mokumoku.pizza;
 
 import mokumoku.pizza.clerk.CashRegister;
+import mokumoku.pizza.clerk.Chef;
+import mokumoku.pizza.clerk.DeliveryMan;
 import mokumoku.pizza.order.Order;
 import mokumoku.pizza.order.OrderCount;
 import mokumoku.pizza.order.OrderProduct;
+import mokumoku.pizza.order.OrderStatus;
 import mokumoku.pizza.pizza.Pizza;
 
 import java.util.ArrayList;
@@ -15,14 +18,21 @@ public class Main {
 
     private static final Pattern UNSIGNED_INTEGER_PATTERN = Pattern.compile("^[0-9]+$");
 
+    private static final CashRegister cashRegister = new CashRegister();
+    private static final Chef chef = new Chef();
+    private static final DeliveryMan deliveryMan = new DeliveryMan();
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        CashRegister cashRegister = new CashRegister();
-
         List<OrderProduct> orderProductList = receiveOrder(scanner);
-        Order order = cashRegister.receiveOrder(orderProductList);
-
         scanner.close();
+
+        Order order = cashRegister.receiveOrder(orderProductList);
+        Order cookedOrder = chef.cook(order);
+        Order deliveredOrder = deliveryMan.deliver(cookedOrder);
+        Integer sales = deliveredOrder.getSales();
+
+        System.out.println("売り上げ: " + sales);
     }
 
     private static List<OrderProduct> receiveOrder(Scanner scanner) {
@@ -46,7 +56,7 @@ public class Main {
 
             String endOrderInput = scanner.nextLine();
             endOrder = endOrderInput.equals("y");
-        } while(!endOrder);
+        } while (!endOrder);
 
         return orderProductList;
     }
