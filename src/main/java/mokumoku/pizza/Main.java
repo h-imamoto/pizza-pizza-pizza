@@ -3,10 +3,7 @@ package mokumoku.pizza;
 import mokumoku.pizza.clerk.CashRegister;
 import mokumoku.pizza.clerk.Chef;
 import mokumoku.pizza.clerk.DeliveryMan;
-import mokumoku.pizza.order.Order;
-import mokumoku.pizza.order.OrderCount;
-import mokumoku.pizza.order.OrderProduct;
-import mokumoku.pizza.order.OrderStatus;
+import mokumoku.pizza.order.*;
 import mokumoku.pizza.pizza.Pizza;
 
 import java.util.ArrayList;
@@ -27,12 +24,12 @@ public class Main {
         List<OrderProduct> orderProductList = receiveOrder(scanner);
         scanner.close();
 
-        Order order = cashRegister.receiveOrder(orderProductList);
-        Order cookedOrder = chef.cook(order);
-        Order deliveredOrder = deliveryMan.deliver(cookedOrder);
-        Integer sales = deliveredOrder.getSales();
+        OrderedOrder orderedOrder = cashRegister.receiveOrder(orderProductList);
+        CookedOrder cookedOrder = chef.cook(orderedOrder);
+        DeliveredOrder deliveredOrder = deliveryMan.deliver(cookedOrder);
+        Sales sales = deliveredOrder.getSales();
 
-        System.out.println("売り上げ: " + sales);
+        System.out.println("売り上げ: " + sales.getValue() + "円です");
     }
 
     private static List<OrderProduct> receiveOrder(Scanner scanner) {

@@ -1,9 +1,13 @@
 package mokumoku.pizza.clerk;
 
-import mokumoku.pizza.order.Order;
+import mokumoku.pizza.order.CookedOrder;
+import mokumoku.pizza.order.DeliveredOrder;
+import mokumoku.pizza.order.OnDeliveryOrder;
 
 public class DeliveryMan {
-    public Order deliver(Order order) {
+    public DeliveredOrder deliver(CookedOrder cookedOrder) {
+        OnDeliveryOrder onDeliveryOrder = cookedOrder.to配達中();
+        System.out.println("配達の人 : 配達中です");
 
         try {
             Thread.sleep(2000L);
@@ -11,6 +15,6 @@ public class DeliveryMan {
             throw new RuntimeException(e.getMessage(), e);
         }
         System.out.println("配達の人 : 配達しました");
-        return order.to配達完了();
+        return onDeliveryOrder.to配達完了();
     }
 }

@@ -8,7 +8,7 @@ public interface Order {
 
     OrderStatus getOrderStatus();
 
-    default OrderedOrder createNewOrder(
+    static OrderedOrder createNewOrder(
             List<OrderProduct> orderProductList
     ) {
         return new OrderedOrder(orderProductList);
@@ -30,10 +30,4 @@ public interface Order {
         throw new RuntimeException("配達完了に遷移できません");
     }
 
-    public Order to調理中() {
-        if (orderStatus != OrderStatus.申込) {
-            throw new RuntimeException("調理中へ遷移できません");
-        }
-        return new Order(orderProductList, OrderStatus.調理中);
-    }
 }
