@@ -5,6 +5,7 @@ import mokumoku.pizza.clerk.Chef;
 import mokumoku.pizza.clerk.DeliveryMan;
 import mokumoku.pizza.order.*;
 import mokumoku.pizza.pizza.Pizza;
+import mokumoku.pizza.pizza.PizzaMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,7 @@ public class Main {
 
             System.out.println("マルゲリータを" + orderCount + "枚ですね");
 
-            orderProductList.add(new OrderProduct(Pizza.マルゲリータ, new OrderCount(Integer.parseInt(orderCount))));
+            orderProductList.add(new OrderProduct(new Pizza(PizzaMenu.マルゲリータ), new OrderCount(Integer.parseInt(orderCount))));
 
             System.out.print("以上でよろしいですか？(はい:y, いいえ:それ以外) > ");
 

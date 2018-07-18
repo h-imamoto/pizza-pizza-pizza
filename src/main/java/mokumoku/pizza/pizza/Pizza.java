@@ -1,17 +1,33 @@
 package mokumoku.pizza.pizza;
 
-public enum Pizza {
+import java.util.ArrayList;
 
-    マルゲリータ(500);
+public class Pizza {
 
-    private final Integer price;
+    private final PizzaMenu pizzaMenu;
+    private Topping topping = new Topping(new ArrayList<>());
 
-    Pizza(Integer price) {
-        this.price = price;
+    public Pizza(PizzaMenu pizzaMenu) {
+        this.pizzaMenu = pizzaMenu;
     }
 
     public Integer getPrice() {
-        return price;
+        return pizzaMenu.getPrice() + topping.getSumPrice();
     }
 
+    /**
+     * トッピングを追加する
+     */
+    public void addTopping(Foodstuff foodstuff) {
+        // ピザの具材はトッピングできない
+        if (pizzaMenu.contains(foodstuff)) {
+            throw new RuntimeException("ピザが持っているトッピングです");
+        }
+        // 二重トッピングはできない
+        if (topping.contains(foodstuff)) {
+            throw new RuntimeException("もうトッピングしました");
+        }
+
+        topping.add(foodstuff);
+    }
 }
