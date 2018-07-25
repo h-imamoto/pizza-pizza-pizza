@@ -9,12 +9,13 @@ public class Topping {
         this.value = value;
     }
 
-    public void add(Foodstuff foodstuff) {
-        value.add(foodstuff);
-    }
+    public boolean add(Foodstuff foodstuff) {
+        // 二重トッピングはできない
+        if (value.contains(foodstuff)) {
+            return false;
+        }
 
-    public boolean contains(Foodstuff foodstuff) {
-        return value.contains(foodstuff);
+        return value.add(foodstuff);
     }
 
     public Integer getSumPrice() {

@@ -1,6 +1,5 @@
 package mokumoku.pizza.pizza;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PizzaFoodstuff {
@@ -13,11 +12,4 @@ public class PizzaFoodstuff {
     public PizzaFoodstuff(List<Foodstuff> value) {
         this.value = value;
     }
-
-    public static PizzaFoodstuff マルゲリータ() {
-        List<Foodstuff> list = new ArrayList<>();
-        list.add(Foodstuff.チーズ);
-        return new PizzaFoodstuff(list);
-    }
-
 }

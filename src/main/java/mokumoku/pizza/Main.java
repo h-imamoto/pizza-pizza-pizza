@@ -4,6 +4,7 @@ import mokumoku.pizza.clerk.CashRegister;
 import mokumoku.pizza.clerk.Chef;
 import mokumoku.pizza.clerk.DeliveryMan;
 import mokumoku.pizza.order.*;
+import mokumoku.pizza.pizza.Foodstuff;
 import mokumoku.pizza.pizza.Pizza;
 import mokumoku.pizza.pizza.PizzaMenu;
 
@@ -22,7 +23,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        List<OrderProduct> orderProductList = receiveOrder(scanner);
+        List<Pizza> orderProductList = receiveOrder(scanner);
         scanner.close();
 
         OrderedOrder orderedOrder = cashRegister.receiveOrder(orderProductList);
@@ -33,22 +34,38 @@ public class Main {
         System.out.println("売り上げ: " + sales.getValue() + "円です");
     }
 
-    private static List<OrderProduct> receiveOrder(Scanner scanner) {
-        List<OrderProduct> orderProductList = new ArrayList<>();
+    private static List<Pizza> receiveOrder(Scanner scanner) {
+        List<Pizza> orderProductList = new ArrayList<>();
         boolean endOrder = false;
 
         do {
-            System.out.print("ピザの種類はマルゲリータのみです。枚数を入力してください > ");
 
-            String orderCount = scanner.nextLine();
-            if (!UNSIGNED_INTEGER_PATTERN.matcher(orderCount).matches() || orderCount.equals("0")) {
-                System.out.println("枚数は1以上の整数で指定してください！！！！");
-                continue;
-            }
+            // ピザの種類を入力する
+            System.out.print("ピザの種類を入力してください マルゲリータ, てりやきチキン, スペシャルミックス > ");
+            String pizzaInput = scanner.nextLine();
 
-            System.out.println("マルゲリータを" + orderCount + "枚ですね");
+            boolean endTopping = false;
 
-            orderProductList.add(new OrderProduct(new Pizza(PizzaMenu.マルゲリータ), new OrderCount(Integer.parseInt(orderCount))));
+            Pizza pizza = new Pizza(PizzaMenu.valueOf(pizzaInput));
+
+            do {
+                // トッピングを入力する
+                System.out.print("トッピングを入力してください > ");
+                String topping = scanner.nextLine();
+                if (pizza.addTopping(Foodstuff.valueOf(topping))) {
+                    System.out.print("トッピングを追加しました > ");
+                } else {
+                    System.out.print("トッピングを追加できませんでした > ");
+                }
+
+                System.out.print("トッピングは以上でよろしいですか？(はい:y, いいえ:それ以外) > ");
+                String toppingInput = scanner.nextLine();
+                endTopping = toppingInput.equals("y");
+
+            } while (!endTopping);
+
+
+            orderProductList.add(pizza);
 
             System.out.print("以上でよろしいですか？(はい:y, いいえ:それ以外) > ");
 

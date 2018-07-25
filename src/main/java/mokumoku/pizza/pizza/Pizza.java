@@ -18,16 +18,12 @@ public class Pizza {
     /**
      * トッピングを追加する
      */
-    public void addTopping(Foodstuff foodstuff) {
+    public boolean addTopping(Foodstuff foodstuff) {
         // ピザの具材はトッピングできない
         if (pizzaMenu.contains(foodstuff)) {
-            throw new RuntimeException("ピザが持っているトッピングです");
-        }
-        // 二重トッピングはできない
-        if (topping.contains(foodstuff)) {
-            throw new RuntimeException("もうトッピングしました");
+            return false;
         }
 
-        topping.add(foodstuff);
+        return topping.add(foodstuff);
     }
 }
