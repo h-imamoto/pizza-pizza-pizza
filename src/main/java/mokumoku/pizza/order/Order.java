@@ -1,15 +1,17 @@
 package mokumoku.pizza.order;
 
+import mokumoku.pizza.pizza.Pizza;
+
 import java.util.List;
 
 public interface Order {
 
-    List<OrderProduct> getOrderProductList();
+    List<Pizza> getPizzaList();
 
     OrderStatus getOrderStatus();
 
     static OrderedOrder createNewOrder(
-            List<OrderProduct> orderProductList
+            List<Pizza> orderProductList
     ) {
         return new OrderedOrder(orderProductList);
     }

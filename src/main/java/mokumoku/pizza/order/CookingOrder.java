@@ -1,18 +1,20 @@
 package mokumoku.pizza.order;
 
+import mokumoku.pizza.pizza.Pizza;
+
 import java.util.List;
 
 public class CookingOrder implements Order {
 
-    private final List<OrderProduct> orderProductList;
+    private final List<Pizza> orderProductList;
     private final OrderStatus orderStatus = OrderStatus.調理中;
 
-    CookingOrder(List<OrderProduct> orderProductList) {
+    CookingOrder(List<Pizza> orderProductList) {
         this.orderProductList = orderProductList;
     }
 
     @Override
-    public List<OrderProduct> getOrderProductList() {
+    public List<Pizza> getPizzaList() {
         return orderProductList;
     }
 
