@@ -13,7 +13,7 @@ public class CookedOrder implements Order {
     }
 
     @Override
-    public List<Pizza> getOrderProductList() {
+    public List<Pizza> getPizzaList() {
         return orderProductList;
     }
 

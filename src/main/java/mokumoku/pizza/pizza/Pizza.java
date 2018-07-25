@@ -11,6 +11,14 @@ public class Pizza {
         this.pizzaMenu = pizzaMenu;
     }
 
+    public PizzaMenu getPizzaMenu() {
+        return pizzaMenu;
+    }
+
+    public Topping getTopping() {
+        return topping;
+    }
+
     public Integer getPrice() {
         return pizzaMenu.getPrice() + topping.getSumPrice();
     }

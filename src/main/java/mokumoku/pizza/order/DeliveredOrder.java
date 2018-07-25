@@ -5,16 +5,16 @@ import mokumoku.pizza.pizza.Pizza;
 import java.util.List;
 
 public class DeliveredOrder implements Order {
-    private final List<Pizza> orderProductList;
+    private final List<Pizza> pizzaList;
     private final OrderStatus orderStatus = OrderStatus.配達完了;
 
-    DeliveredOrder(List<Pizza> orderProductList) {
-        this.orderProductList = orderProductList;
+    DeliveredOrder(List<Pizza> pizzaList) {
+        this.pizzaList = pizzaList;
     }
 
     @Override
-    public List<Pizza> getOrderProductList() {
-        return orderProductList;
+    public List<Pizza> getPizzaList() {
+        return pizzaList;
     }
 
     @Override
@@ -23,6 +23,6 @@ public class DeliveredOrder implements Order {
     }
 
     public Sales getSales() {
-        return new Sales(orderProductList.stream().mapToInt(Pizza::getPrice).sum());
+        return new Sales(pizzaList.stream().mapToInt(Pizza::getPrice).sum());
     }
 }

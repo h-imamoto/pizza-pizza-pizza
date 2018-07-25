@@ -9,6 +9,10 @@ public class Topping {
         this.value = value;
     }
 
+    public List<Foodstuff> getValue() {
+        return value;
+    }
+
     public boolean add(Foodstuff foodstuff) {
         // 二重トッピングはできない
         if (value.contains(foodstuff)) {

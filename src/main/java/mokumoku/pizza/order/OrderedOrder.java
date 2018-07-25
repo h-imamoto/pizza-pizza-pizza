@@ -14,7 +14,7 @@ public class OrderedOrder implements Order {
     }
 
     @Override
-    public List<Pizza> getOrderProductList() {
+    public List<Pizza> getPizzaList() {
         return orderProductList;
     }
 

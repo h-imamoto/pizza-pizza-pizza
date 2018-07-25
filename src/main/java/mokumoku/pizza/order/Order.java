@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface Order {
 
-    List<Pizza> getOrderProductList();
+    List<Pizza> getPizzaList();
 
     OrderStatus getOrderStatus();
 

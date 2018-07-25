@@ -3,7 +3,10 @@ package mokumoku.pizza;
 import mokumoku.pizza.clerk.CashRegister;
 import mokumoku.pizza.clerk.Chef;
 import mokumoku.pizza.clerk.DeliveryMan;
-import mokumoku.pizza.order.*;
+import mokumoku.pizza.order.CookedOrder;
+import mokumoku.pizza.order.DeliveredOrder;
+import mokumoku.pizza.order.OrderedOrder;
+import mokumoku.pizza.order.Sales;
 import mokumoku.pizza.pizza.Foodstuff;
 import mokumoku.pizza.pizza.Pizza;
 import mokumoku.pizza.pizza.PizzaMenu;
@@ -30,6 +33,15 @@ public class Main {
         CookedOrder cookedOrder = chef.cook(orderedOrder);
         DeliveredOrder deliveredOrder = deliveryMan.deliver(cookedOrder);
         Sales sales = deliveredOrder.getSales();
+
+        List<Pizza> pizzaList = deliveredOrder.getPizzaList();
+        pizzaList.forEach(pizza -> {
+            System.out.println(pizza.getPizzaMenu().name() + ":" + pizza.getPizzaMenu().getPrice());
+            pizza.getTopping().getValue().forEach(topping -> {
+                        System.out.println(" - " + topping.name() + ":" + topping.getPrice());
+                    }
+            );
+        });
 
         System.out.println("売り上げ: " + sales.getValue() + "円です");
     }
